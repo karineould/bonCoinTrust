@@ -10,16 +10,24 @@ export default class Cards extends React.Component {
             listStyleType : 'none'
         };
 
+        const styleAddAnnonce = {
+            position: 'absolute',
+            right: '16px',
+            top: '140px'
+        };
+
         const comment = isPro ? '' : (
-                <div>
-                    <div className="card-body py-2 small">
-                        <a className="mr-3 d-inline-block" href="#">
-                            <i className="fa fa-fw fa-comment"></i>Comment
-                        </a>
-                    </div>
-                    <hr className="my-0" />
-                </div>
+            <a className="mr-3 d-inline-block" href="#">
+                <i className="fa fa-fw fa-comment"></i>Comment
+            </a>
         );
+
+        const addAnnonce = isPro && this.props.onClickModal ? (
+            <a className="btn btn-primary" href="#" data-toggle="modal" onClick={this.props.onClickModal} data-target="#createAnnonce" data-id={this.props.id}>
+                <i className={"fa fa-fw fa-plus"}>  </i>
+                C'est mon annonce !
+            </a>
+        ) : '';
 
         return (
             <div className="card mb-3" data-id={this.props.id}>
@@ -36,8 +44,13 @@ export default class Cards extends React.Component {
                     </p>
                 </div>
                 <hr className="my-0" />
-                {comment}
-                <div className="card-footer small text-muted">Posted : {this.props.date}</div>
+                <div className="card-body py-2 small">
+                    {comment}
+                    {addAnnonce}
+                </div>
+                <hr className="my-0" />
+                <div className="card-footer small text-muted">
+                    Posted : {this.props.date}</div>
             </div>
         )
     }

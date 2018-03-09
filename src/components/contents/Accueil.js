@@ -2,7 +2,7 @@ import React from 'react';
 import Main from "../Main";
 import {connect} from "react-redux";
 import {getUsers} from "../../redux/users/actions";
-import {getAnnonces} from "../../redux/annonces/actions";
+import {getAnnonces, getMyAnnonces} from "../../redux/annonces/actions";
 import {Link} from 'react-router-dom';
 
 export class Accueil extends React.Component {
@@ -14,6 +14,11 @@ export class Accueil extends React.Component {
     componentDidMount() {
         this.props.getUsers();
         this.props.getAnnonces();
+
+        if (this.props.state.auth.isPro){
+            this.props.getMyAnnonces();
+        }
+
     }
 
     render() {
@@ -96,7 +101,8 @@ const mapStateToProps = function(state) {
 const mapDispatchToProps = (dispatch) => {
     return {
         getUsers: () => dispatch(getUsers()),
-        getAnnonces: () => dispatch(getAnnonces())
+        getAnnonces: () => dispatch(getAnnonces()),
+        getMyAnnonces: () => dispatch(getMyAnnonces())
     }
 };
 
