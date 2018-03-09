@@ -26,7 +26,7 @@ export default class Modal extends React.Component {
                         </div>
                         <div className="modal-body">{this.props.children}</div>
                         <div className="modal-footer">
-                            <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <button className="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
                             {buttonValidate}
                         </div>
                     </div>

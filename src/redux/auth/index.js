@@ -5,6 +5,7 @@ import { RESET_AUTH } from './actions';
 const initialState = {
     userEmail: "",
     token: "",
+    userName: "",
     isLogged: false,
     isAdmin: false,
     isPro: false,
@@ -23,6 +24,7 @@ const auth = (state = initialState, action) => {
         case SET_TOKEN:
             return Object.assign({}, state, {
                 userEmail: action.userEmail,
+                userName:action.userName,
                 token: action.token,
                 isLogged: action.isLogged,
                 isAdmin: action.isAdmin,
@@ -32,6 +34,7 @@ const auth = (state = initialState, action) => {
         case RESET_AUTH:
             return Object.assign({}, state, {
                 userEmail: action.userEmail,
+                userName:action.userName,
                 token: action.token,
                 isLogged: action.isLogged,
                 isAdmin: action.isAdmin,

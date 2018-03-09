@@ -29,12 +29,12 @@ export class Main extends React.Component {
                     <Footer/>
                     <ScrollButton/>
                     <Modal id={"exampleModal"}
-                           title={"Deconnexion"}
-                           titleButton={"Deconnexion"}
+                           title={"Déconnexion"}
+                           titleButton={"Déconnexion"}
                            onClick={this.handleClick.bind(this)}
                            error={false}
                     >
-                        Etes vous sur de vouloir vous deconnecter ?
+                        Êtes-vous sûr de vouloir vous déconnecter ?
                     </Modal>
                 </div>
             </div>
