@@ -1,11 +1,23 @@
-import { SET_ANNONCES } from './actions';
+import { SET_ANNONCES, SET_MY_ANNONCES } from './actions';
 
-const initialState = [];
+
+const initialState = {
+    all: [],
+    mine: [],
+};
 
 const annonces = (state = initialState, action) => {
     switch(action.type) {
         case SET_ANNONCES:
-            return action.annonces;
+            return {
+                all : action.all,
+                mine: state.mine
+            };
+        case SET_MY_ANNONCES:
+            return {
+                all : state.all,
+                mine: action.mine
+            };
         default:
             return state;
     }

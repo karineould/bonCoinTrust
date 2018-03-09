@@ -5,6 +5,7 @@ import Login from './login/Login';
 import Accueil from './contents/Accueil';
 import User from './contents/Users';
 import Annonce from './contents/Annonces';
+import MyAnnonce from "./contents/MyAnnonces";
 
 
 export class App extends React.Component {
@@ -29,7 +30,7 @@ export class App extends React.Component {
                     <Route exact path='/' component={Accueil}/>
                     <Route path='/users' component={User}/>
                     <Route path='/annonces' component={Annonce}/>
-
+                    <Route path='/myAnnonces' component={MyAnnonce} />
                     <Redirect from="/login" to="/"/>
                 </Switch>
             </Router>

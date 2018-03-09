@@ -22,7 +22,7 @@ export default class NavBar extends React.Component {
                     <div>
                         <ItemSideBar title="Profil" link="/user" icon="fa fa-fw fa-user" />
                         <ItemSideBar title="Annonces" link="/annonces" icon="fa fa-fw fa-th-list" />
-                        <ItemSideBar title="Mes annonces" link="/MyAnnonces" icon="fa fa-fw fa-star" />
+                        <ItemSideBar title="Mes annonces" link="/myAnnonces" icon="fa fa-fw fa-star" />
                     </div>
                 ) : (
                     <div>
