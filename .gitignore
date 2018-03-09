@@ -20,8 +20,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-src/constants.js
-
 .idea/
 /nbproject/
 package-lock.json

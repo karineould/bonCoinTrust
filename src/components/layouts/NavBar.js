@@ -6,21 +6,42 @@ export default class NavBar extends React.Component {
 
     render() {
         const userEmail = store.getState().auth.userEmail;
+        const isAdmin = store.getState().auth.isAdmin;
+        const isPro = store.getState().auth.isPro;
+
+        const navBar = isAdmin ? (
+            <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
+                <ItemSideBar title="Accueil" link="/" icon="fa fa-fw fa-dashboard" />
+                <ItemSideBar title="Utilisateurs" link="/users" icon="fa fa-fw fa-users" />
+                <ItemSideBar title="Annonces" link="/annonces" icon="fa fa-fw fa-th-list" />
+                <ItemSideBar title="Avis" link="/avis" icon="fa fa-fw fa-star" />
+            </ul>
+        ) : (
+            <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
+                <ItemSideBar title="Accueil" link="/" icon="fa fa-fw fa-dashboard" />
+                {isPro ? (
+                    <div>
+                        <ItemSideBar title="Profil" link="/user" icon="fa fa-fw fa-user" />
+                        <ItemSideBar title="Mes annonces" link="/annonces" icon="fa fa-fw fa-th-list" />
+                        <ItemSideBar title="Mes avis" link="/avis" icon="fa fa-fw fa-star" />
+                    </div>
+                ) : (
+                    <div>
+                        <ItemSideBar title="Profil" link="/user" icon="fa fa-fw fa-user" />
+                        <ItemSideBar title="Annonces" link="/annonces" icon="fa fa-fw fa-th-list" />
+                    </div>
+                )}
+            </ul>
+        );
 
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-                <a className="navbar-brand" href="">Labo IOT</a>
+                <a className="navbar-brand" href="">Bon Coin Trust</a>
                 <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarResponsive">
-                    <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
-                        <ItemSideBar title="Accueil" link="/" icon="fa fa-fw fa-dashboard" />
-                        <ItemSideBar title="Utilisateurs" link="/users" icon="fa fa-fw fa-table" />
-                        {/*<ItemSideBar title="Materiels" link="/materiels" icon="fa fa-fw fa-wrench" />*/}
-                        {/*<ItemSideBar title="Emprunts" link="/emprunts" icon="fa fa-fw fa-cart-arrow-down" />*/}
-                        {/*<ItemSideBar title="Categories" link="/categories" icon="fa fa-fw fa-sitemap" />*/}
-                    </ul>
+                    {navBar}
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
                             <div className="nav-link">

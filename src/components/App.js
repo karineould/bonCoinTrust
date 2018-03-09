@@ -3,6 +3,9 @@ import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom
 import { connect } from 'react-redux';
 import Login from './login/Login';
 import Accueil from './contents/Accueil';
+import User from './contents/Users';
+import Annonce from './contents/Annonces';
+
 
 export class App extends React.Component {
 
@@ -24,7 +27,8 @@ export class App extends React.Component {
             <Router>
                 <Switch>
                     <Route exact path='/' component={Accueil}/>
-                    {/*<Route path='/users' component={User}/>*/}
+                    <Route path='/users' component={User}/>
+                    <Route path='/annonces' component={Annonce}/>
                     <Redirect from="/login" to="/"/>
                 </Switch>
             </Router>

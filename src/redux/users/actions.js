@@ -1,5 +1,4 @@
-import { GET, POST, PATCH, DELETE } from '../../../src/api/api';
-import {PUT} from "../../api/api";
+import {PUT, GET, POST, PATCH, DELETE } from "../../api/api";
 export const SET_USERS = 'SET_USERS';
 
 

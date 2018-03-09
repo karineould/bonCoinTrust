@@ -1,7 +1,7 @@
 import React from 'react';
 import { getToken } from '../../redux/auth/actions';
 import {connect} from "react-redux";
-import {InputForm} from "../form/InputForm";
+import InputForm from "../form/InputForm";
 
 export class Login extends React.Component {
 

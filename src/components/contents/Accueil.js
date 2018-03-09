@@ -2,6 +2,7 @@ import React from 'react';
 import Main from "../Main";
 import {connect} from "react-redux";
 import {getUsers} from "../../redux/users/actions";
+import {getAnnonces} from "../../redux/annonces/actions";
 import {Link} from 'react-router-dom';
 
 export class Accueil extends React.Component {
@@ -12,6 +13,7 @@ export class Accueil extends React.Component {
 
     componentDidMount() {
         this.props.getUsers();
+        this.props.getAnnonces();
     }
 
     render() {
@@ -52,7 +54,7 @@ export class Accueil extends React.Component {
                                 </div>
                                 <div className="mr-5">0 Avis!</div>
                             </div>
-                            <Link to="/materiels">
+                            <Link to="/avis">
                                 <div className="card-footer text-white clearfix small z-1">
                                     <span className="float-left">View Details</span>
                                     <span className="float-right">
@@ -71,7 +73,7 @@ export class Accueil extends React.Component {
                                 </div>
                                 <div className="mr-5">0 Annonces!</div>
                             </div>
-                            <Link to="/emprunts">
+                            <Link to="/annonces">
                                 <div className="card-footer text-white clearfix small z-1">
                                     <span className="float-left">View Details</span>
                                     <span className="float-right">
@@ -94,6 +96,7 @@ const mapStateToProps = function(state) {
 const mapDispatchToProps = (dispatch) => {
     return {
         getUsers: () => dispatch(getUsers()),
+        getAnnonces: () => dispatch(getAnnonces())
     }
 };
 

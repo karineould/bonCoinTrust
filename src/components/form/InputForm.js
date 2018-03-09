@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class InputForm extends React.Component {
+export default class InputForm extends React.Component {
 
     constructor(props) {
         super(props);
