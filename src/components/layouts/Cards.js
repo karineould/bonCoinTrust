@@ -1,5 +1,4 @@
 import React from 'react';
-import {Annonces} from "../contents/Annonces";
 import { store } from '../../store';
 
 export default class Cards extends React.Component {
@@ -23,7 +22,7 @@ export default class Cards extends React.Component {
         );
 
         return (
-            <div className="card mb-3">
+            <div className="card mb-3" data-id={this.props.id}>
                 <a href="#">
                     <img className="card-img-top img-fluid w-100" src={this.props.image ? this.props.image : ''} alt="" />
                 </a>

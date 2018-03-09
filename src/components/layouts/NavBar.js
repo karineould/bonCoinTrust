@@ -14,7 +14,6 @@ export default class NavBar extends React.Component {
                 <ItemSideBar title="Accueil" link="/" icon="fa fa-fw fa-dashboard" />
                 <ItemSideBar title="Utilisateurs" link="/users" icon="fa fa-fw fa-users" />
                 <ItemSideBar title="Annonces" link="/annonces" icon="fa fa-fw fa-th-list" />
-                <ItemSideBar title="Avis" link="/avis" icon="fa fa-fw fa-star" />
             </ul>
         ) : (
             <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
@@ -22,8 +21,8 @@ export default class NavBar extends React.Component {
                 {isPro ? (
                     <div>
                         <ItemSideBar title="Profil" link="/user" icon="fa fa-fw fa-user" />
-                        <ItemSideBar title="Mes annonces" link="/annonces" icon="fa fa-fw fa-th-list" />
-                        <ItemSideBar title="Mes avis" link="/avis" icon="fa fa-fw fa-star" />
+                        <ItemSideBar title="Annonces" link="/annonces" icon="fa fa-fw fa-th-list" />
+                        <ItemSideBar title="Mes annonces" link="/MyAnnonces" icon="fa fa-fw fa-star" />
                     </div>
                 ) : (
                     <div>

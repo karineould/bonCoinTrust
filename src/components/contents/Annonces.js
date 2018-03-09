@@ -10,6 +10,21 @@ export class Annonces extends React.Component {
 
     constructor(props) {
         super(props);
+
+        this.getImage = this.getImage.bind(this);
+    }
+
+    getImage(item) {
+        if (item.image) {
+            return item.image;
+        }
+
+        if (item.main_image !== null){
+            return item.main_image.medium;
+        }
+
+        return '';
+
     }
 
     render() {
@@ -28,8 +43,6 @@ export class Annonces extends React.Component {
             </a>
         ) : '';
 
-        // a.main_image.length > 0 ? a.main_image.medium : ''
-
 
         return (
             <Main>
@@ -45,8 +58,9 @@ export class Annonces extends React.Component {
 
                 <div className="card-columns">
                     {this.props.state.annonces.map((a, i) =>
-                        <Cards key={a._id}
-                               // image={}
+                        <Cards key={i}
+                               id={a._id}
+                               image={this.getImage(a)}
                                title={a.title}
                                content={{
                                    category : a.category,

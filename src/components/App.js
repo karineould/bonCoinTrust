@@ -29,6 +29,7 @@ export class App extends React.Component {
                     <Route exact path='/' component={Accueil}/>
                     <Route path='/users' component={User}/>
                     <Route path='/annonces' component={Annonce}/>
+
                     <Redirect from="/login" to="/"/>
                 </Switch>
             </Router>
