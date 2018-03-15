@@ -28,6 +28,46 @@ export class Accueil extends React.Component {
     }
 
     render() {
+        const blockMyAnnonces = this.props.state.auth.isPro ? (
+            <div className="col-xl-3 col-sm-6 mb-3">
+                <div className="card text-white bg-danger o-hidden h-100">
+                    <div className="card-body">
+                        <div className="card-body-icon">
+                            <i className="fa fa-fw fa-cart-arrow-down"></i>
+                        </div>
+                        <div className="mr-5">
+                            Mes {this.props.state.annonces.mine.length} Annonces</div>
+                    </div>
+                    <Link to="/annonces">
+                        <div className="card-footer text-white clearfix small z-1">
+                            <span className="float-left">Voir détails</span>
+                            <span className="float-right">
+                                    <i className="fa fa-angle-right"></i>
+                                </span>
+                        </div>
+                    </Link>
+                </div>
+            </div>
+        ) : (<div className="col-xl-3 col-sm-6 mb-3">
+                <div className="card text-white bg-warning o-hidden h-100">
+                    <div className="card-body">
+                        <div className="card-body-icon">
+                            <i className="fa fa-fw fa-wrench"></i>
+                        </div>
+                        <div className="mr-5">0 Avis</div>
+                    </div>
+                    <Link to="/avis">
+                        <div className="card-footer text-white clearfix small z-1">
+                            <span className="float-left">Voir détails</span>
+                            <span className="float-right">
+                                        <i className="fa fa-angle-right"></i>
+                                    </span>
+                        </div>
+                    </Link>
+                </div>
+            </div>);
+
+
         return (
             <Main>
                 <ol className="breadcrumb">
@@ -44,11 +84,11 @@ export class Accueil extends React.Component {
                                 <div className="card-body-icon">
                                     <i className="fa fa-fw fa-users"></i>
                                 </div>
-                                <div className="mr-5">0 Users!</div>
+                                <div className="mr-5">{this.props.state.users.length} Utilisateur</div>
                             </div>
                             <Link to="/users">
                                 <div className="card-footer text-white clearfix small z-1">
-                                    <span className="float-left">View Details</span>
+                                    <span className="float-left">Voir détails</span>
                                     <span className="float-right">
                                     <i className="fa fa-angle-right"></i>
                                 </span>
@@ -57,24 +97,7 @@ export class Accueil extends React.Component {
 
                         </div>
                     </div>
-                    <div className="col-xl-3 col-sm-6 mb-3">
-                        <div className="card text-white bg-warning o-hidden h-100">
-                            <div className="card-body">
-                                <div className="card-body-icon">
-                                    <i className="fa fa-fw fa-wrench"></i>
-                                </div>
-                                <div className="mr-5">0 Avis!</div>
-                            </div>
-                            <Link to="/avis">
-                                <div className="card-footer text-white clearfix small z-1">
-                                    <span className="float-left">View Details</span>
-                                    <span className="float-right">
-                                    <i className="fa fa-angle-right"></i>
-                                </span>
-                                </div>
-                            </Link>
-                        </div>
-                    </div>
+
 
                     <div className="col-xl-3 col-sm-6 mb-3">
                         <div className="card text-white bg-success o-hidden h-100">
@@ -82,11 +105,12 @@ export class Accueil extends React.Component {
                                 <div className="card-body-icon">
                                     <i className="fa fa-fw fa-cart-arrow-down"></i>
                                 </div>
-                                <div className="mr-5">0 Annonces!</div>
+                                <div className="mr-5">
+                                    {this.props.state.annonces.all.length} Annonces</div>
                             </div>
                             <Link to="/annonces">
                                 <div className="card-footer text-white clearfix small z-1">
-                                    <span className="float-left">View Details</span>
+                                    <span className="float-left">Voir détails</span>
                                     <span className="float-right">
                                     <i className="fa fa-angle-right"></i>
                                 </span>
@@ -94,6 +118,7 @@ export class Accueil extends React.Component {
                             </Link>
                         </div>
                     </div>
+                    {blockMyAnnonces}
                 </div>
             </Main>
         );

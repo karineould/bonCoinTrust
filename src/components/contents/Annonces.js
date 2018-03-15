@@ -19,9 +19,12 @@ export class Annonces extends React.Component {
             price: 0,
             date: "",
             images: [],
+            search: ''
         };
 
         this.getImage = this.getImage.bind(this);
+        this.searchAnnonce = this.searchAnnonce.bind(this);
+        this.applySearch = this.applySearch.bind(this);
     }
 
     getImage(item) {
@@ -51,6 +54,21 @@ export class Annonces extends React.Component {
         )
     }
 
+    searchAnnonce(e){
+        e.preventDefault();
+
+        if(e.target.id === "searchAnnonce"){
+            this.setState({ search : e.target.value });
+        }
+
+    }
+
+    applySearch(e) {
+        e.preventDefault();
+
+        this.props.getAnnonces(this.state.search)
+    }
+
     modalCreate(e) {
         e.preventDefault();
 
@@ -78,9 +96,11 @@ export class Annonces extends React.Component {
         const searchAnnonce = this.props.state.auth.isPro ? (
             <form className="form-inline my-2 my-lg-0 mr-lg-2" style={styleSearchAnnonce}>
                 <div className="input-group">
-                    <input className="form-control" type="text" placeholder="Enter your compagny" />
+                    <input  id="searchAnnonce" className="form-control" type="text" placeholder="Rechercher" onChange={this.searchAnnonce}/>
                     <span className="input-group-append">
-                            <button className="btn btn-primary" type="button">
+                            <button className="btn btn-primary" type="button"
+                                    onClick={this.applySearch}
+                            >
                                 <i className="fa fa-search"></i>
                             </button>
                         </span>
@@ -143,7 +163,7 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAnnonces: () => dispatch(getAnnonces()),
+        getAnnonces: (query) => dispatch(getAnnonces(query)),
         addAnnonce: (id,  title, url, category, location, price, date, images) => dispatch(addAnnonce(id, title, url, category, location, price, date, images))
     }
 };

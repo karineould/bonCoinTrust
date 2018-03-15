@@ -12,7 +12,7 @@ export class App extends React.Component {
 
     render() {
 
-        console.log(this.props.state.auth);
+        // console.log(this.props.state.auth);
         if (!this.props.state.auth.isLogged) {
             return (
                 <Router>

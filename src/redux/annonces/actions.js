@@ -7,18 +7,20 @@ export const setAnnonces = (annonces) => ({
     all : annonces
 });
 
+
 export const setMyAnnonces = (annonces) => ({
     type : SET_MY_ANNONCES,
     mine : annonces
 });
 
-export function getAnnonces() {
-    return dispatch => GET('/annonces')
+export function getAnnonces(query = false) {
+    let search = query ? '?search=' + query : '';
+    return dispatch => GET('/annonces' + search)
         .then((annonces) => {
             return dispatch(setAnnonces(annonces))
         }).catch((err) => {
             console.log(err);
-        })
+        });
 
 }
 
@@ -42,8 +44,6 @@ export function addAnnonce(id, title, url, category, location, price, date, imag
         date: date,
         images: images
     });
-
-    console.log(payload);
 
     return dispatch => PUT('/annonces/' + id, payload)
         .then((annonce) => {
