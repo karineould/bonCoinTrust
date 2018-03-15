@@ -148,7 +148,7 @@ export class Users extends React.Component {
             </td>
         ) : <td style={styleTdHidden}></td>;
 
-        const headerTable =  this.props.state.auth.isAdmin ? ["Nom","Email", "Admin", "Pro", "Actions"] : ["User name", "Admin", "Pro"];
+        const headerTable =  this.props.state.auth.isAdmin ? ["Nom","Email", "Admin", "Pro", "Actions"] : ["Nom","Email", "Admin", "Pro"];
 
         return (
             <Main>

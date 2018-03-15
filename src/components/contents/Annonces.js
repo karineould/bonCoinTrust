@@ -11,7 +11,14 @@ export class Annonces extends React.Component {
         super(props);
 
         this.state = {
-            annonce_id : false
+            annonce_id : false,
+            title: "",
+            url: "",
+            category: "",
+            location: "",
+            price: 0,
+            date: "",
+            images: [],
         };
 
         this.getImage = this.getImage.bind(this);
@@ -31,14 +38,31 @@ export class Annonces extends React.Component {
     }
 
     createAnnonce(){
-        this.props.addAnnonce(this.state.annonce_id)
+        console.log(this.state);
+        this.props.addAnnonce(
+            this.state.annonce_id,
+            this.state.title,
+            this.state.url,
+            this.state.category,
+            this.state.location,
+            this.state.price,
+            this.state.date,
+            this.state.images
+        )
     }
 
     modalCreate(e) {
         e.preventDefault();
 
         this.setState({
-            annonce_id: e.target.dataset['id']
+            annonce_id: e.target.dataset['id'],
+            title: e.target.dataset['title'],
+            url: e.target.dataset['url'],
+            category: e.target.dataset['category'],
+            location: e.target.dataset['location'],
+            price: e.target.dataset['price'],
+            date: e.target.dataset['date'],
+            images: e.target.dataset['images'] ? [{'large': e.target.dataset['images']}] : [],
         });
     }
 
@@ -88,7 +112,8 @@ export class Annonces extends React.Component {
                                    category : a.category,
                                    location: a.location,
                                    prix: a.price,
-                                   url: a.url
+                                   url: a.url,
+                                   data: a.date
                                }}
                                date={a.date}
                         />
@@ -119,7 +144,7 @@ const mapStateToProps = function(state) {
 const mapDispatchToProps = (dispatch) => {
     return {
         getAnnonces: () => dispatch(getAnnonces()),
-        addAnnonce: (id) => dispatch(addAnnonce(id))
+        addAnnonce: (id,  title, url, category, location, price, date, images) => dispatch(addAnnonce(id, title, url, category, location, price, date, images))
     }
 };
 

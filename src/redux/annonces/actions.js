@@ -32,8 +32,20 @@ export function getMyAnnonces() {
 }
 
 
-export function addAnnonce(id) {
-    return dispatch => PUT('/annonces/' + id)
+export function addAnnonce(id, title, url, category, location, price, date, images) {
+    let payload = JSON.stringify({
+        title: title,
+        url: url,
+        category: category,
+        location: location,
+        price: price,
+        date: date,
+        images: images
+    });
+
+    console.log(payload);
+
+    return dispatch => PUT('/annonces/' + id, payload)
         .then((annonce) => {
             return dispatch(getMyAnnonces())
         }).catch((err) => {
