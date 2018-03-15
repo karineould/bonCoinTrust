@@ -18,6 +18,15 @@ export function getUsers() {
 
 }
 
+export function getUser(id) {
+    return dispatch => GET('/users/' + id)
+        .then((users) => {
+            return dispatch(setUsers(users))
+        }).catch((err) => {
+            console.log(err)
+        })
+}
+
 export function putUser(userEmail, password) {
     let payload = JSON.stringify({
         email: userEmail,

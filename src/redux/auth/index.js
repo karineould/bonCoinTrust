@@ -3,6 +3,7 @@ import { SET_ERROR } from './actions';
 import { RESET_AUTH } from './actions';
 
 const initialState = {
+    id: false,
     userEmail: "",
     token: "",
     userName: "",
@@ -23,6 +24,7 @@ const auth = (state = initialState, action) => {
     switch(action.type) {
         case SET_TOKEN:
             return Object.assign({}, state, {
+                id: action.id,
                 userEmail: action.userEmail,
                 userName:action.userName,
                 token: action.token,
@@ -33,6 +35,7 @@ const auth = (state = initialState, action) => {
             });
         case RESET_AUTH:
             return Object.assign({}, state, {
+                id: action.id,
                 userEmail: action.userEmail,
                 userName:action.userName,
                 token: action.token,

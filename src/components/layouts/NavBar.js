@@ -21,13 +21,13 @@ export default class NavBar extends React.Component {
                 <ItemSideBar title="Accueil" link="/" icon="fa fa-fw fa-dashboard" />
                 {isPro ? (
                     <div>
-                        <ItemSideBar title="Profil" link="/user" icon="fa fa-fw fa-user" />
+                        <ItemSideBar title="Profil" link="/users" icon="fa fa-fw fa-user" />
                         <ItemSideBar title="Annonces" link="/annonces" icon="fa fa-fw fa-th-list" />
                         <ItemSideBar title="Mes annonces" link="/myAnnonces" icon="fa fa-fw fa-star" />
                     </div>
                 ) : (
                     <div>
-                        <ItemSideBar title="Profil" link="/user" icon="fa fa-fw fa-user" />
+                        <ItemSideBar title="Profil" link="/users" icon="fa fa-fw fa-user" />
                         <ItemSideBar title="Annonces" link="/annonces" icon="fa fa-fw fa-th-list" />
                     </div>
                 )}
