@@ -148,13 +148,13 @@ export class Users extends React.Component {
             </td>
         ) : <td style={styleTdHidden}></td>;
 
-        const headerTable =  this.props.state.auth.isAdmin ? ["User name", "Admin", "Pro", "Actions"] : ["User name", "Admin", "Pro"];
+        const headerTable =  this.props.state.auth.isAdmin ? ["Nom","Email", "Admin", "Pro", "Actions"] : ["User name", "Admin", "Pro"];
 
         return (
             <Main>
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item">
-                        <a href="#">Accueil</a>
+                        <a href="">Accueil</a>
                     </li>
                     <li className="breadcrumb-item active">Utilisateurs</li>
                 </ol>
@@ -167,6 +167,7 @@ export class Users extends React.Component {
                         <Table header={headerTable}>
                             {this.props.state.users.map((u, i) =>
                                 <tr key={u._id}>
+                                    <td>{u.nom}</td>
                                     <td>{u.email}</td>
                                     <td>{u.admin ?
                                         <i className={"fa fa-fw fa-check-circle"}> </i>

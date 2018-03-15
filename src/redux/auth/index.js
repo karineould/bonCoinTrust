@@ -6,6 +6,7 @@ const initialState = {
     id: false,
     userEmail: "",
     token: "",
+    userName: "",
     isLogged: false,
     isAdmin: false,
     isPro: false,
@@ -25,6 +26,7 @@ const auth = (state = initialState, action) => {
             return Object.assign({}, state, {
                 id: action.id,
                 userEmail: action.userEmail,
+                userName:action.userName,
                 token: action.token,
                 isLogged: action.isLogged,
                 isAdmin: action.isAdmin,
@@ -35,6 +37,7 @@ const auth = (state = initialState, action) => {
             return Object.assign({}, state, {
                 id: action.id,
                 userEmail: action.userEmail,
+                userName:action.userName,
                 token: action.token,
                 isLogged: action.isLogged,
                 isAdmin: action.isAdmin,

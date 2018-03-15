@@ -6,6 +6,7 @@ export default class NavBar extends React.Component {
 
     render() {
         const userEmail = store.getState().auth.userEmail;
+        const userName = store.getState().auth.userName;
         const isAdmin = store.getState().auth.isAdmin;
         const isPro = store.getState().auth.isPro;
 
@@ -45,13 +46,13 @@ export default class NavBar extends React.Component {
                         <li className="nav-item">
                             <div className="nav-link">
                                 <i className="fa fa-fw fa-user"></i>
-                                {userEmail}
+                                {userName}
                             </div>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" data-toggle="modal" data-target="#exampleModal">
                                 <i className="fa fa-fw fa-sign-out"></i>
-                                Logout
+                                Déconnexion
                             </a>
                         </li>
                     </ul>
