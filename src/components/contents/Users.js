@@ -125,6 +125,10 @@ export class Users extends React.Component {
             top: '140px'
         };
 
+        const styleTdHidden = {
+            display: 'none'
+        };
+
         const addUser = this.props.state.auth.isAdmin ? (
             <a className="btn btn-primary" style={styleAddUser} href="#" data-toggle="modal" data-target="#createUser">
                 <i className={"fa fa-fw fa-plus"}>  </i>
@@ -142,7 +146,7 @@ export class Users extends React.Component {
                     <i className={"fa fa-fw fa-trash"}> </i>
                 </a>
             </td>
-        ) : '';
+        ) : <td style={styleTdHidden}></td>;
 
         const headerTable =  this.props.state.auth.isAdmin ? ["User name", "Admin", "Pro", "Actions"] : ["User name", "Admin", "Pro"];
 

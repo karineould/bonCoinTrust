@@ -19,7 +19,7 @@ export class Annonces extends React.Component {
 
     getImage(item) {
         if (item.images) {
-            return item.images;
+            return item.images[0].large;
         }
 
         if (item.main_image !== null){

@@ -1,7 +1,7 @@
 import React from 'react';
 import Main from "../Main";
 import {connect} from "react-redux";
-import {getUsers} from "../../redux/users/actions";
+import {getUsers, getUser} from "../../redux/users/actions";
 import {getAnnonces, getMyAnnonces} from "../../redux/annonces/actions";
 import {Link} from 'react-router-dom';
 
@@ -12,7 +12,13 @@ export class Accueil extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getUsers();
+
+        if (this.props.state.auth.isAdmin) {
+            this.props.getUsers();
+        } else {
+            this.props.getUser(this.props.state.auth.id);
+        }
+
         this.props.getAnnonces();
 
         if (this.props.state.auth.isPro){
@@ -101,6 +107,7 @@ const mapStateToProps = function(state) {
 const mapDispatchToProps = (dispatch) => {
     return {
         getUsers: () => dispatch(getUsers()),
+        getUser: (id) => dispatch(getUser(id)),
         getAnnonces: () => dispatch(getAnnonces()),
         getMyAnnonces: () => dispatch(getMyAnnonces())
     }
