@@ -132,7 +132,7 @@ export class Users extends React.Component {
         const addUser = this.props.state.auth.isAdmin ? (
             <a className="btn btn-primary" style={styleAddUser} href="#" data-toggle="modal" data-target="#createUser">
                 <i className={"fa fa-fw fa-plus"}>  </i>
-                add User
+                Ajouter un utilisateur
             </a>
         ) : '';
 
@@ -154,7 +154,7 @@ export class Users extends React.Component {
             <Main>
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item">
-                        <a href="">Accueil</a>
+                        <a href="#">Accueil</a>
                     </li>
                     <li className="breadcrumb-item active">Utilisateurs</li>
                 </ol>
@@ -190,6 +190,7 @@ export class Users extends React.Component {
                        title={"Create User"}
                        titleButton={"Create"}
                        onClick={this.saveUser.bind(this)}
+                       validateModal={true}
                        error={(this.state.userEmail.error || this.state.password.error)}
                 >
                     <form role="form">
@@ -220,6 +221,7 @@ export class Users extends React.Component {
                        data={this.state.delete.userId}
                        onClick={this.deleteUser.bind(this)}
                        error={false}
+                       validateModal={true}
                 >
                     Etes vous sur de vouloir supprimer {this.state.delete.userName}
                 </Modal>

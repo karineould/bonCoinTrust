@@ -8,11 +8,14 @@ export default class Modal extends React.Component {
 
     render() {
 
-        const buttonValidate = this.props.onClick ? (
+        const buttonValidate = this.props.onClick && this.props.validateModal ? (
             <button className={"btn btn-primary " + (this.props.error ? "disabled": "")} onClick={this.props.onClick} type="button" data-dismiss="modal">{this.props.titleButton}</button>
-        ) : (
-            <button className={"btn btn-primary " + (this.props.error ? "disabled": "")} type="button" data-dismiss="modal">{this.props.titleButton}</button>
-        );
+        ) : '';
+            // (
+            {/*<button className={"btn btn-primary " + (this.props.error ? "disabled": "")} type="button" data-dismiss="modal">{this.props.titleButton}</button>*/}
+        // );
+
+
 
         return (
             <div className="modal fade" id={this.props.id} tabIndex="-1" role="dialog" aria-hidden="true">
@@ -24,9 +27,11 @@ export default class Modal extends React.Component {
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div className="modal-body">{this.props.children}</div>
+                        <div className="modal-body">
+                            {this.props.children}
+                        </div>
                         <div className="modal-footer">
-                            <button className="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+                            <button className="btn btn-secondary" type="button" data-dismiss="modal">Fermer</button>
                             {buttonValidate}
                         </div>
                     </div>
