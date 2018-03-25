@@ -1,5 +1,6 @@
 import { SET_TOKEN } from './actions';
 import { SET_ERROR } from './actions';
+import { SET_REGISTER } from './actions';
 import { RESET_AUTH } from './actions';
 
 const initialState = {
@@ -17,6 +18,8 @@ const initialState = {
             password: false
         }
     },
+    user: false,
+    errorCreateUser: false
 };
 
 const auth = (state = initialState, action) => {
@@ -32,6 +35,11 @@ const auth = (state = initialState, action) => {
                 isAdmin: action.isAdmin,
                 isPro: action.isPro,
                 error: action.error
+            });
+        case SET_REGISTER:
+            return Object.assign({}, state, {
+                user: action.user,
+                errorCreateUser: action.error
             });
         case RESET_AUTH:
             return Object.assign({}, state, {

@@ -42,35 +42,38 @@ export class Login extends React.Component {
 
     render() {
 
+        const styleCenter = {
+            textAlign : 'center'
+        }
         return (
             <div className="container">
                 <div className="card card-login mx-auto mt-5">
-                    <div className="card-header">Login</div>
+                    <div className="card-header" style={styleCenter}><b>Authentification</b></div>
                     <div className="card-body">
                         <form role="form">
                             <InputForm type="email"
                                        htmlFor="inputEmail"
-                                       label="Email address"
+                                       label="Email"
                                        onChange={this.change.bind(this)}
                                        id="inputEmail"
                                        error={this.state.error}
                                        errorMessage={this.props.state.auth.error.message.email}
-                                       placeholder="Enter email"
+                                       placeholder="Entrez l'email"
                             />
                             <InputForm type="password"
                                        htmlFor="inputPassword"
-                                       label="Password"
+                                       label="Mot de passe"
                                        onChange={this.change.bind(this)}
                                        id="inputPassword"
                                        error={this.state.error}
                                        errorMessage={this.props.state.auth.error.message.password}
-                                       placeholder="Password"
+                                       placeholder="Entrez le mot de passe"
                             />
-                            <a className="btn btn-primary btn-block" onClick={this.handleClick} href="/">Login</a>
+                            <a className="btn btn-primary btn-block" onClick={this.handleClick} href="/">Connexion</a>
                         </form>
 
                         <div className="text-center">
-                            <a className="d-block small mt-3" href="">Register an Account</a>
+                            <a className="d-block small mt-3" href="/register" link="/register">S'inscrire</a>
                         </div>
                     </div>
                 </div>

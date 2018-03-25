@@ -16,14 +16,15 @@ export default class InputForm extends React.Component {
 
         if (this.props.error) {
              return (
-                 <div className="form-group">
-                     <label className="text-danger" htmlFor={this.props.htmlFor}>{this.props.label}</label>
+                 <div className="form-group" style={this.props.styleform}>
+                     <label style={this.props.stylelabel} className="text-danger" htmlFor={this.props.htmlFor}>{this.props.label}</label>
                      <input className="form-control is-invalid"
                             id={this.props.id}
                             onChange={this.props.onChange}
                             type={this.props.type}
                             placeholder={this.props.placeholder}
                             onFocus={this.props.onChange}
+
                      />
                      {errorMessage}
                  </div>
@@ -31,8 +32,8 @@ export default class InputForm extends React.Component {
         }
 
         return (
-            <div className="form-group">
-                <label htmlFor={this.props.htmlFor}>{this.props.label}</label>
+            <div className="form-group" style={this.props.styleform} >
+                <label style={this.props.stylelabel}  htmlFor={this.props.htmlFor}>{this.props.label}</label>
                 <input className="form-control"
                        id={this.props.id}
                        onChange={this.props.onChange}
