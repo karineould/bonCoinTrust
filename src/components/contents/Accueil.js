@@ -3,6 +3,7 @@ import Main from "../Main";
 import {connect} from "react-redux";
 import {getUsers, getUser} from "../../redux/users/actions";
 import {getAnnonces, getMyAnnonces} from "../../redux/annonces/actions";
+import {getAllAvis} from "../../redux/avis/actions";
 import {Link} from 'react-router-dom';
 
 export class Accueil extends React.Component {
@@ -20,6 +21,7 @@ export class Accueil extends React.Component {
         }
 
         this.props.getAnnonces();
+        this.props.getAllAvis();
 
         if (this.props.state.auth.isPro){
             this.props.getMyAnnonces();
@@ -54,9 +56,9 @@ export class Accueil extends React.Component {
                         <div className="card-body-icon">
                             <i className="fa fa-fw fa-wrench"></i>
                         </div>
-                        <div className="mr-5">0 Avis</div>
+                        <div className="mr-5">{this.props.state.avis.all.length} Avis</div>
                     </div>
-                    <Link to="/avis">
+                    <Link to="/annonces">
                         <div className="card-footer text-white clearfix small z-1">
                             <span className="float-left">Voir détails</span>
                             <span className="float-right">
@@ -134,7 +136,8 @@ const mapDispatchToProps = (dispatch) => {
         getUsers: () => dispatch(getUsers()),
         getUser: (id) => dispatch(getUser(id)),
         getAnnonces: () => dispatch(getAnnonces()),
-        getMyAnnonces: () => dispatch(getMyAnnonces())
+        getMyAnnonces: () => dispatch(getMyAnnonces()),
+        getAllAvis: () => dispatch(getAllAvis())
     }
 };
 

@@ -4,6 +4,7 @@ import Modal from "../layouts/Modal";
 import {connect} from "react-redux";
 import Cards from '../layouts/Cards';
 import {getAnnonces, addAnnonce} from "../../redux/annonces/actions";
+import {getAvis, putAvis} from "../../redux/avis/actions";
 
 export class Annonces extends React.Component {
 
@@ -19,7 +20,9 @@ export class Annonces extends React.Component {
             price: 0,
             date: "",
             images: [],
-            search: ''
+            search: '',
+            avisNote: 0,
+            avisCommentaire: ""
         };
 
         this.getImage = this.getImage.bind(this);
@@ -41,7 +44,7 @@ export class Annonces extends React.Component {
     }
 
     createAnnonce(){
-        console.log(this.state);
+
         this.props.addAnnonce(
             this.state.annonce_id,
             this.state.title,
@@ -54,6 +57,25 @@ export class Annonces extends React.Component {
         )
     }
 
+    createAvis(e){
+        e.preventDefault();
+        this.props.putAvis(this.state.annonce_id,this.state.avisNote, this.state.avisCommentaire);
+        console.log('save avis');
+    }
+
+    change(e) {
+        if (e.target.id === "avisNote") {
+            this.setState({
+                avisNote: e.target.value
+            })
+        }
+
+        if (e.target.id === "avisCommentaire"){
+            this.setState({
+                avisCommentaire: e.target.value
+            })
+        }
+    }
     searchAnnonce(e){
         e.preventDefault();
 
@@ -69,9 +91,9 @@ export class Annonces extends React.Component {
         this.props.getAnnonces(this.state.search)
     }
 
+
     modalCreate(e) {
         e.preventDefault();
-
         this.setState({
             annonce_id: e.target.dataset['id'],
             title: e.target.dataset['title'],
@@ -82,16 +104,24 @@ export class Annonces extends React.Component {
             date: e.target.dataset['date'],
             images: e.target.dataset['images'] ? [{'large': e.target.dataset['images']}] : [],
         });
+        // on récupère les avis quand on clique sur l'annonce
+        this.props.getAvis(e.target.dataset['id']);
+        // on remet à vide le select et le commentaire de la saisie de l'avis
+        this.refs.avisCommentaire.value = "";
+        this.refs.avisNote.value = 0;
     }
 
     render() {
 
-        console.log(this.props.state.annonces);
         const styleSearchAnnonce = {
             position: 'absolute',
             right: '16px',
             top: '140px'
         };
+
+        const styleWidth = {
+            width : "90%"
+        }
 
         const searchAnnonce = this.props.state.auth.isPro ? (
             <form className="form-inline my-2 my-lg-0 mr-lg-2" style={styleSearchAnnonce}>
@@ -136,6 +166,7 @@ export class Annonces extends React.Component {
                                    data: a.date
                                }}
                                date={a.date}
+                               pageName={'allAnnonces'}
                         />
 
 
@@ -145,10 +176,50 @@ export class Annonces extends React.Component {
                 <Modal id={"createAnnonce"}
                        title={"Ajouter une annonce"}
                        titleButton={"Ajouter"}
+                       validateModal={true}
                        onClick={this.createAnnonce.bind(this)}
                        error={false}
                 >
-                    Etes vous sur que ce soit votre annonce ?
+                    Êtes-vous sûr qu'il s'agit de votre annonce ?
+                </Modal>
+
+                <Modal id={"getAvis"}
+                       title={"Les avis sur cette annonce"}
+                       validateModal={false}
+                       error={false}
+                >
+                    {this.props.state.avis.all.length > 0 ? (this.props.state.avis.all.map((a,i)=>
+                        <p key={i}><b>{a.owner.nom}</b> {a.note}/5 - {a.commentaire} </p>
+                    )) : <p> Aucun avis pour le moment</p> }
+                </Modal>
+
+                <Modal id={"createAvis"}
+                       title={"Donner son avis"}
+                       validateModal={true}
+                       titleButton={"Soumettre"}
+                       onClick={this.createAvis.bind(this)}
+                       error={false}
+                >
+                    Note : &nbsp;
+                    <select
+                        id="avisNote"
+                        ref="avisNote"
+                        onChange={this.change.bind(this)}>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <br/>
+                    Commentaire : <br/>
+                    <textarea
+                        style={styleWidth}
+                        id="avisCommentaire"
+                        ref="avisCommentaire"
+                        onChange={this.change.bind(this)}>
+                    </textarea>
                 </Modal>
             </Main>
         )
@@ -164,7 +235,9 @@ const mapStateToProps = function(state) {
 const mapDispatchToProps = (dispatch) => {
     return {
         getAnnonces: (query) => dispatch(getAnnonces(query)),
-        addAnnonce: (id,  title, url, category, location, price, date, images) => dispatch(addAnnonce(id, title, url, category, location, price, date, images))
+        addAnnonce: (id,  title, url, category, location, price, date, images) => dispatch(addAnnonce(id, title, url, category, location, price, date, images)),
+        getAvis: (id) => dispatch(getAvis(id)),
+        putAvis: (id, note, commentaire) => dispatch(putAvis(id, note, commentaire)),
     }
 };
 

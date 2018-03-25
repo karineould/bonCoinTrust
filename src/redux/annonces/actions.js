@@ -52,3 +52,23 @@ export function addAnnonce(id, title, url, category, location, price, date, imag
             console.log(err);
         })
 }
+
+export function deleteAnnonce(id) {
+
+    return dispatch => DELETE('/annonces/' + id)
+        .then((annonce) => {
+            return dispatch(getMyAnnonces())
+        }).catch((err) => {
+            console.log(err);
+        })
+}
+
+
+// export function getAvis(id) {
+//     return dispatch => GET('/avis/annonces/' + id, payload)
+//         .then((annonce) => {
+//             return dispatch(getMyAnnonces())
+//         }).catch((err) => {
+//             console.log(err);
+//         })
+// }

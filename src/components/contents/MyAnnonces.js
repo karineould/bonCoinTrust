@@ -2,7 +2,9 @@ import React from 'react';
 import Main from "../Main";
 import {connect} from "react-redux";
 import Cards from '../layouts/Cards';
-import {getAnnonces} from "../../redux/annonces/actions";
+import Modal from "../layouts/Modal";
+import {getAnnonces, deleteAnnonce} from "../../redux/annonces/actions";
+import {getAvis} from "../../redux/avis/actions";
 
 export class MyAnnonces extends React.Component {
 
@@ -29,7 +31,33 @@ export class MyAnnonces extends React.Component {
 
     }
 
+    deleteAnnonce(){
+        console.log(this.state);
+        this.props.deleteAnnonce(
+            this.state.annonce_id
+        )
+    }
+
+    getAvisOfAnnonce(){
+        console.log(this.state);
+        this.props.getAvis(
+            this.state.annonce_id
+        )
+    }
+
+    modalCreate(e) {
+        e.preventDefault();
+
+        let idAnnonce =  e.target.dataset['id'];
+        this.setState({
+            annonce_id: idAnnonce
+        });
+        this.props.getAvis(idAnnonce)
+
+    }
+
     render() {
+
         return (
             <Main>
                 <ol className="breadcrumb">
@@ -47,6 +75,7 @@ export class MyAnnonces extends React.Component {
                                id={a._id ? a._id : a.id}
                                image={this.getImage(a)}
                                title={a.title}
+                               onClickModal={this.modalCreate.bind(this)}
                                content={{
                                    category : a.category,
                                    location: a.location,
@@ -54,11 +83,33 @@ export class MyAnnonces extends React.Component {
                                    url: a.url
                                }}
                                date={a.date}
+                               pageName={'myAnnonce'}
                         />
 
 
                     )}
                 </div>
+
+                <Modal id={"deleteAnnonce"}
+                       title={"Supprimer une annonce"}
+                       titleButton={"Supprimer"}
+                       validateModal={true}
+                       onClick={this.deleteAnnonce.bind(this)}
+                       error={false}
+                > Êtes-vous sûr de vouloir supprimer cette annonce ?
+                </Modal>
+
+                <Modal id={"getAvis"}
+                       title={"Les avis sur cette annonce"}
+                       validateModal={false}
+                       onClick={this.getAvisOfAnnonce.bind(this)}
+                       avis={this.props.state.avis.all}
+                       error={false}
+                >
+                    {this.props.state.avis.all.length > 0 ? (this.props.state.avis.all.map((a,i)=>
+                        <p key={i}> <b>{a.owner.nom}</b> {a.note}/5 - {a.commentaire} </p>
+                    )) : <p> Aucun avis pour le moment</p> }
+                </Modal>
             </Main>
         )
     }
@@ -70,7 +121,9 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAnnonces: () => dispatch(getAnnonces())
+        getAnnonces: () => dispatch(getAnnonces()),
+        deleteAnnonce: (id) => dispatch(deleteAnnonce(id)),
+        getAvis: (id) => dispatch(getAvis(id)),
     }
 };
 

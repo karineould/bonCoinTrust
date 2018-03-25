@@ -33,6 +33,7 @@ export class Main extends React.Component {
                            titleButton={"Déconnexion"}
                            onClick={this.handleClick.bind(this)}
                            error={false}
+                           validateModal={true}
                     >
                         Êtes-vous sûr de vouloir vous déconnecter ?
                     </Modal>

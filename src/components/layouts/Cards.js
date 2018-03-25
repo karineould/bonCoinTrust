@@ -10,17 +10,49 @@ export default class Cards extends React.Component {
             listStyleType : 'none'
         };
 
-        const comment = isPro ? '' : (
-            <a className="mr-3 d-inline-block" href="#">
-                <i className="fa fa-fw fa-comment"></i>Comment
+        const cssRight = {
+            float : 'right',
+            marginLeft: '1em'
+        };
+
+        const cssInline = {
+            display : 'inline-block',
+            width: '100%'
+        };
+        const addComment = isPro ? '' : (
+            <a className="btn btn-primary mr-3 d-inline-block"
+               href="#"
+               data-toggle="modal"
+               onClick={this.props.onClickModal}
+               data-target="#createAvis"
+               style={cssRight}
+               title="Donner son avis"
+               alt=""
+               data-id={this.props.id}>
+                Mon avis <i className="fa fa-fw fa-comment"></i>
             </a>
         );
+        const getComment = isPro == false || (isPro && this.props.pageName == "myAnnonce") ? (
+            <a className="btn btn-success mr-3 d-inline-block"
+               href="#"
+               data-toggle="modal"
+               onClick={this.props.onClickModal}
+               data-target="#getAvis"
+               style={cssRight}
+               title="Voir les avis"
+               alt=""
+               data-id={this.props.id}>
+                Les avis <i className="fa fa-fw fa-star" data-id={this.props.id}></i>
+            </a>
+        ) : '';
 
-        const addAnnonce = isPro && this.props.onClickModal ? (
+        const addAnnonce = isPro && this.props.pageName == "allAnnonces" ? (
             <a className="btn btn-primary"
                href="#"
                data-toggle="modal"
                onClick={this.props.onClickModal}
+               title="Ajouter cette annonce"
+               alt=""
                data-target="#createAnnonce"
                data-id={this.props.id}
                data-title={this.props.title}
@@ -34,6 +66,22 @@ export default class Cards extends React.Component {
                 C'est mon annonce !
             </a>
         ) : '';
+
+        const deleteAnnonce = isPro  && this.props.pageName == "myAnnonce" ? (
+            <a className="btn btn-danger"
+               href="#"
+               data-toggle="modal"
+               onClick={this.props.onClickModal}
+               data-target="#deleteAnnonce"
+               style={cssRight}
+               title="Supprimer cette annonce"
+               alt=""
+               data-id={this.props.id}>
+
+                <i className={"fa fa-fw fa-trash"} data-id={this.props.id}>  </i>
+            </a>
+        ) : '';
+
 
         return (
             <div className="card mb-3" data-id={this.props.id}>
@@ -51,12 +99,17 @@ export default class Cards extends React.Component {
                 </div>
                 <hr className="my-0" />
                 <div className="card-body py-2 small">
-                    {comment}
+
                     {addAnnonce}
                 </div>
                 <hr className="my-0" />
-                <div className="card-footer small text-muted">
-                    Posted : {this.props.date}</div>
+                <div className="card-footer small text-muted" style={cssInline}>
+                    Posté : {this.props.date}
+                    {getComment}
+                    {addComment}
+                    {deleteAnnonce}
+                </div>
+
             </div>
         )
     }
