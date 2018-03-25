@@ -37,6 +37,7 @@ export default class InputForm extends React.Component {
                 <input className="form-control"
                        id={this.props.id}
                        onChange={this.props.onChange}
+                       onClick={this.props.onClick}
                        type={this.props.type}
                        placeholder={this.props.placeholder}
                        onFocus={this.props.onChange}

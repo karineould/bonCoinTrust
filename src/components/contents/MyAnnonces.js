@@ -70,7 +70,8 @@ export class MyAnnonces extends React.Component {
                 <hr />
 
                 <div className="card-columns">
-                    {this.props.state.annonces.mine.map((a, i) =>
+                    {this.props.state.annonces.mine.length > 0 ?
+                        this.props.state.annonces.mine.map((a, i) =>
                         <Cards key={i}
                                id={a._id ? a._id : a.id}
                                image={this.getImage(a)}
@@ -87,7 +88,7 @@ export class MyAnnonces extends React.Component {
                         />
 
 
-                    )}
+                    ) : <b> Vous n'avez aucune annonce !</b>}
                 </div>
 
                 <Modal id={"deleteAnnonce"}

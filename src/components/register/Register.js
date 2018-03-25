@@ -35,21 +35,20 @@ export class Register extends React.Component {
                 password: e.target.value
             })
         }
+    }
 
-        if (e.target.id === "inputIsPro"){
-            this.setState({
-                isPro: (this.state.isPro ? false : true)
-            })
-            // console.log(this.state.isPro);
-        }
+    toggleCheckbox() {
+        this.setState({
+            isPro: (this.state.isPro == true ? false : true)
+        });
+        console.log(this.state.isPro);
     }
 
     handleClick(e) {
         e.preventDefault();
+        console.log(this.state.isPro);
         this.props.register(this.state.userName, this.state.userEmail, this.state.password, this.state.isPro);
 
-        console.log(this.props.state)
-        console.log(this.props.state.auth.errorCreateUser);
 
     }
 
@@ -108,7 +107,7 @@ export class Register extends React.Component {
                             <InputForm type="checkbox"
                                        htmlFor="inputIsPro"
                                        label="Professionnel ?"
-                                       onChange={this.change.bind(this)}
+                                       onClick={this.toggleCheckbox.bind(this)}
                                        id="inputIsPro"
                                        error={this.state.error}
                                        styleform={styleFlex}

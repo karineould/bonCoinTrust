@@ -9,7 +9,7 @@ export default class ItemNavBar extends React.Component {
                 <Link to={this.props.link}>
                     <div className="nav-link">
                         <i className={this.props.icon}> </i>
-                        <span className="nav-link-text">{this.props.title}</span>
+                        <span className="nav-link-text">&nbsp;{this.props.title}</span>
                     </div>
                 </Link>
             </li>

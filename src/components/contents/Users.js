@@ -178,7 +178,7 @@ export class Users extends React.Component {
                                         : <i className={"fa fa-fw fa-times"}> </i>}
                                     </td>
                                     {/*{updateField}*/}
-                                    {deleteField(u._id, u.email)}
+                                    {deleteField(u._id, u.nom)}
                                 </tr>
                             )}
                         </Table>
@@ -216,14 +216,14 @@ export class Users extends React.Component {
                 </Modal>
 
                 <Modal id={"deleteUser"}
-                       title={"Delete User"}
-                       titleButton={"Delete"}
+                       title={"Supprimer un utilisateur"}
+                       titleButton={"Supprimer"}
                        data={this.state.delete.userId}
                        onClick={this.deleteUser.bind(this)}
                        error={false}
                        validateModal={true}
                 >
-                    Etes vous sur de vouloir supprimer {this.state.delete.userName}
+                    Êtes-vous sûr de vouloir supprimer l'utilisateur <b>{this.state.delete.userName}</b> ?
                 </Modal>
             </Main>
         );

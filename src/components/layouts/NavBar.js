@@ -46,7 +46,7 @@ export default class NavBar extends React.Component {
                         <li className="nav-item">
                             <div className="nav-link">
                                 <i className="fa fa-fw fa-user"></i>
-                                {userName}
+                                <b>{userName.toUpperCase()}</b>
                             </div>
                         </li>
                         <li className="nav-item">
