@@ -1,5 +1,9 @@
 ## BonCoinTrust
 
+# Prérequis
+
+Il faut avoir lancé mongo sur votre machine et avoir mis en route l'API de l'application que vous trouverez à l'adresse suivante : https://github.com/karineould/ApiBonCoinTrust
+
 # Installation du projet
 
 1 - Récupérer le dépot git 
@@ -8,10 +12,3 @@
 **`npm install`** pour installer toutes les dépendances nécessaires
 
 3 - Lancer la commande : **`npm run serve`** pour lancer le serveur de l'application
-
-# Prérequis
-
-Il faut avoir lancé mongo sur votre machine
-
-Il faut aussi mettre en route l'API de l'application que vous trouverez à l'adresse suivante : https://github.com/karineould/ApiBonCoinTrust
-
