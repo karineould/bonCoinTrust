@@ -5,9 +5,9 @@
 1 - Récupérer le dépot git 
 
 2 - Se mettre sur le répertoire du projet et lancer la commande suivante :
-**`npm install** pour installer toutes les dépendances nécessaires
+**`npm install`** pour installer toutes les dépendances nécessaires
 
-3 - Lancer la commande : **`npm run serve`**`pour lancer le serveur de l'application
+3 - Lancer la commande : **`npm run serve`** pour lancer le serveur de l'application
 
 # Prérequis
 
